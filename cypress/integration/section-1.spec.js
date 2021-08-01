@@ -63,26 +63,22 @@ describe('Problem 1', () => {
     .then(() => expect(values).to.be.length(6))
     cy.get(values).should('have.length.greaterThan',5)  
   })
- 
-it('Assert there are exactly 3 people older than 60 years old', function () {
-  //Assert there are exactly 3 people older than 60 years old
-  let ageValues = []
-  let age = []
-  cy.get('table >tbody').contains('th', 'D.O.B').should('be.visible')
-    cy.get('table >tbody >tr th:nth-child(4)').each(($el, index, $list) =>{
-      cy.wrap($el)
-      .invoke('text')
-      .then(text => {        
-        ageValues.push(text.trim)      
-      for(var i=0; i<=ageValues.length; i++){ 
-        cy.calculateAge(ageValues.indexOf(i)).then((return_value) => {
-           cy.log(return_value)
-          })
-        }
-        });
-      });
-    })
    
+    it('Assert there are exactly 3 people older than 60 years old', function () {
+      //Assert there are exactly 3 people older than 60 years old 
+      let count = 0
+      cy.get('table >tbody').contains('th', 'D.O.B').should('be.visible')
+        cy.get('table >tbody >tr th:nth-child(4)').each(($el, index, $list) =>{
+          cy.wrap($el)
+          .invoke('text')
+          .then(text => {
+            if(text < '1961')   
+            count++
+            cy.log(count)
+          })          
+        })           
+      })
+          
     
   it('Assert that the form is not visible', () => {
     //Assert that the form is not visible
