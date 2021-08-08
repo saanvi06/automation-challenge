@@ -9,6 +9,7 @@
     "dev": "npm start",
     "lint": "npx eslint app/**/*.js",
     "cy:open": "cypress open",
+    "cypress:open": "cypress open",
     "cy:verify": "cypress verify",
     "cy:info": "cypress info",
     "cy:version": "cypress version",
@@ -25,9 +26,11 @@
   },
   "homepage": "git@github.com:AlayaCare/cypress-interview-handbook.git#readme",
   "dependencies": {
+    "cy-spok": "1.3.2",
+    "cypress-downloadfile": "1.2.1",
     "json-server": "0.16.3",
     "nocache": "2.1.0",
-    "serve": "11.3.0"
+    "serve": "11.3.2"
   },
   "devDependencies": {
     "@bahmutov/print-env": "1.2.0",
@@ -38,7 +41,7 @@
     "eslint-plugin-json-format": "2.0.1",
     "eslint-plugin-mocha": "5.3.0",
     "execa": "2.0.5",
-    "globby": "9.1.0",
+    "globby": "12.0.0",
     "stop-build": "1.1.0",
     "typescript": "3.7.4",
     "yaml-lint": "1.2.4"

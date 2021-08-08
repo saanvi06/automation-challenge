@@ -1,40 +1,92 @@
-const Section1 = {
-  /**
-   * A literal is considered static, stable strings (eg. titles, form labels, ...)
-   */
-  literals: {
-    SAMPLE_LITERAL: 'This is a sample literal. You can safely delete it.',
-  },
+class Section1 {
 
-  /**
-   * An element is a selector for any DOM element (eg. [data-test="xxx"], #id, ...)
-   */
-  elements: {
-    sampleElement: '[data-test=sample-element-to-be-safely-deleted]',
-  },
+  visit()
+  {
+    cy.visit('http://localhost:8080/section-1');
+  }
 
-  /**
-   * An action should be pretty self explanatory! It consists of all the method performing
-   * a particular action from clicking a simple button to doing complex assertions.
-   */
-  actions: {
-    /**
-     * Example of action.
-     * In this example, we are grabbing a sample element, clicking on it and asserting the api answer.
-     *
-     * This is only used as an example and can be safely deleted.
-     */
-    assertSampleApiResponse () {
-      cy.server()
-      cy.wait('/endpoint').as('endpoint')
+  getTable()
+  {
+    return cy.get('table');
+  }
 
-      cy.get(Section1.elements.sampleElement).click()
-      // ... An api call to "/endpoint" performed on the app.
-      cy.wait('@endpoint').should((request) => {
-        expect(request.status).to.eq(200)
-      })
-    },
-  },
+  showTableButton()
+  {
+    return cy.get('button').contains('Show table');
+  }
+
+  showTableVisible()
+  {
+    return cy.get('tr').contains('ID');
+  }
+
+  getTableColumnsLength()
+  {
+    return cy.get('table')
+             .find('tr[class=table-header]')
+             .children();
+  }
+
+  getTableRows()
+  {
+    return cy.get('table').find('tr');
+  }
+
+  getTableHeader()
+  {
+    return cy.get('tr[class=table-header]').contains('ID');
+  }
+
+  getTableValues()
+  {
+    return cy.get('table >tbody >tr th');
+  }
+
+  getTableHeaderDOB()
+  {
+    return cy.get('table >tbody').contains('th', 'D.O.B');
+  }
+
+  getValuesFromDOBColumn()
+  {
+    return cy.get('table >tbody >tr th:nth-child(4)');
+  }
+
+  getForm()
+  {
+    return cy.get('form');
+  }
+
+  showFormButton()
+  {
+    return cy.get('button').contains('Show Form');
+  }
+
+  getFullName()
+  {
+    return cy.get('input[id="fullName"]');
+  }
+
+  getAge()
+  {
+    return cy.get('input[id="age"]');
+  }
+
+  getGender()
+  {
+    return cy.get('select[id="gender"]');
+  }
+
+  getNurseCheckbox()
+  {
+    return cy.get('input[id="nurse"]');
+  }
+
+  getSubmitButton()
+  {
+    return cy.get('button[id="submit"]');
+  }
+
 }
 
-module.exports = { Section1 }
+export default Section1;
